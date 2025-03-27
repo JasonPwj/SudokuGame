@@ -1,4 +1,6 @@
 ﻿using System.Collections.ObjectModel;
+using CommunityToolkit.Maui.Alerts;
+using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
 using CommunityToolkit.Mvvm.Input;
 using Plugin.Maui.Audio;
@@ -79,10 +81,15 @@ public partial class GameViewModel : ObservableObject
     SelectedDiff = Diffs.First();
   }
 
+  partial void OnIsHintEnabledChanged(bool value)
+  {
+    SelectedSudoku = null;
+  }
+
   partial void OnSelectedDiffChanged(DiffItem value)
   {
     _newGameLevel = value?.Diff ?? DifficultyLevel.Easy;
-    Task.Run(() => NewGame());
+    Application.Current?.Dispatcher.Dispatch(async () => await NewGame());
   }
 
   partial void OnSelectedSudokuChanged(SudokuCell? value)
@@ -90,6 +97,7 @@ public partial class GameViewModel : ObservableObject
     if (value == null)
     {
       SetAllKeys();
+      ResetBoardBackColor();
       if (CanErase)
       {
         CanErase = false;
@@ -171,8 +179,6 @@ public partial class GameViewModel : ObservableObject
           SelectedSudoku.IsValid = true;
           SelectedSudoku.ForeColor = Colors.DeepSkyBlue;
 
-          IncrementNumberCount(number);
-
           if (CheckSuccess())
           {
             Application.Current.MainPage.DisplayAlert(
@@ -196,6 +202,9 @@ public partial class GameViewModel : ObservableObject
           PlayWrongSound();
         }
         SelectedSudoku.Value = number;
+
+        InitNumberCounts();
+
         if (!CanErase)
         {
           CanErase = true;
@@ -218,6 +227,7 @@ public partial class GameViewModel : ObservableObject
     if (SelectedSudoku != null && !SelectedSudoku.IsFixed)
     {
       SelectedSudoku.Value = 0;
+      InitNumberCounts();
     }
   }
 
@@ -230,7 +240,17 @@ public partial class GameViewModel : ObservableObject
   [RelayCommand]
   private async Task NewGame(string diff = "0")
   {
+    SelectedSudoku = null;
     ResetBoard();
+
+    try
+    {
+      var toast = Toast.Make("Generating new game...", ToastDuration.Short, 14);
+      if (toast != null)
+        await toast.Show();
+    }
+    catch { }
+
     if (diff == "1")
     {
       _newGameLevel = DifficultyLevel.Easy;
@@ -285,7 +305,9 @@ public partial class GameViewModel : ObservableObject
     if (_operations.Count > 0)
     {
       var item = _operations.Last();
-      Board[item.Row * 9 + item.Col].Value = item.Value;
+      SelectedSudoku = Board[item.Row * 9 + item.Col];
+      SelectedSudoku.Value = item.Value;
+      InitNumberCounts();
       _operations.RemoveAt(_operations.Count - 1);
       if (_operations.Count == 0)
       {
@@ -414,7 +436,7 @@ public partial class GameViewModel : ObservableObject
 
   private void SetAllKeys(bool b = false)
   {
-    for (int i = 0; i < 9; i++)
+    for (int i = 0; i < IsKeyEnabled.Count; i++)
       IsKeyEnabled[i].IsEnabled = b;
   }
 
@@ -455,6 +477,14 @@ public partial class GameViewModel : ObservableObject
     for (int i = 0; i < Board.Count; i++)
     {
       IncrementNumberCount(Board[i].Value);
+    }
+  }
+
+  private void ResetBoardBackColor()
+  {
+    for (int i = 0; i < Board.Count; i++)
+    {
+      Board[i].BackColor = Colors.Transparent;
     }
   }
 }

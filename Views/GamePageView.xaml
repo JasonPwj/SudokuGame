@@ -63,13 +63,13 @@
                   Text="{Binding Text}"
                   TextColor="{Binding ForeColor}"
                   VerticalOptions="Center">
-                  <Label.Behaviors>
+                  <!--<Label.Behaviors>
                     <mct:AnimationBehavior EventName="Loaded">
                       <mct:AnimationBehavior.AnimationType>
                         <animations:LabelMixedAnimation Length="1000" />
                       </mct:AnimationBehavior.AnimationType>
                     </mct:AnimationBehavior>
-                  </Label.Behaviors>
+                  </Label.Behaviors>-->
                 </Label>
               </Border>
             </Border>
