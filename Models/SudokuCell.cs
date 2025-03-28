@@ -11,7 +11,7 @@ public partial class SudokuCell : ObservableObject
   private bool _isFixed = false;
 
   [ObservableProperty]
-  private string _text = "";
+  private string _text = " ";
 
   [ObservableProperty]
   private Color _foreColor = Colors.Black;

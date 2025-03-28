@@ -7,6 +7,13 @@ public class SudokuGenerator
   private static Random _random = new Random();
   private int[,] _board = new int[9, 9];
 
+  private readonly IThemeService _themeService;
+
+  public SudokuGenerator(IThemeService themeService)
+  {
+    _themeService = themeService;
+  }
+
   public int[,] GeneratePuzzle(int emptyCells = 40)
   {
     FillDiagonalBoxes();
@@ -160,6 +167,7 @@ public class SudokuGenerator
             IsFixed = board[i, j] != 0,
             Row = i,
             Col = j,
+            ForeColor = _themeService.FixedColor,
             CellMargin = (i, j) switch
             {
               (i: var x, j: var y) when x % 3 == 2 && y % 3 == 2 => new Thickness(1, 1, 2, 2),

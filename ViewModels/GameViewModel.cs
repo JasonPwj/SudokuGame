@@ -72,13 +72,40 @@ public partial class GameViewModel : ObservableObject
   private DateTime _begin = DateTime.Now;
 
   private readonly IAudioManager _audioManager;
+  private readonly IThemeService _themeService;
 
-  public GameViewModel(IAudioManager audioManager)
+  public GameViewModel(IAudioManager audioManager, IThemeService themeService)
   {
     _audioManager = audioManager;
-    _sudokuGenerator = new SudokuGenerator();
+    _sudokuGenerator = new SudokuGenerator(themeService);
     _board = new ObservableCollection<SudokuCell>();
     SelectedDiff = Diffs.First();
+    _themeService = themeService;
+
+    Application.Current.RequestedThemeChanged += (s, e) =>
+    {
+      switch (e.RequestedTheme)
+      {
+        default:
+        case AppTheme.Light:
+          SetBoardFixedForeColor(Colors.Black);
+          break;
+        case AppTheme.Dark:
+          SetBoardFixedForeColor(Colors.White);
+          break;
+      }
+    };
+  }
+
+  private void SetBoardFixedForeColor(Color color)
+  {
+    foreach (var board in Board)
+    {
+      if (board.IsFixed)
+      {
+        board.ForeColor = color;
+      }
+    }
   }
 
   partial void OnIsHintEnabledChanged(bool value)
@@ -129,9 +156,8 @@ public partial class GameViewModel : ObservableObject
           || value.Col == j
           || (i >= rowBox && i < rowBox + 3 && j >= colBox && j < colBox + 3)
         )
-        //if(value.Row == i || value.Col == j)
         {
-          Board[i * 9 + j].BackColor = Colors.AntiqueWhite;
+          Board[i * 9 + j].BackColor = _themeService.CollisionBack;
         }
         else
         {
@@ -139,7 +165,7 @@ public partial class GameViewModel : ObservableObject
         }
       }
     }
-    value.BackColor = Colors.LightYellow;
+    value.BackColor = _themeService.SelectedBack;
 
     if (!value.IsFixed && value.Value != 0)
     {
@@ -177,11 +203,11 @@ public partial class GameViewModel : ObservableObject
         if (IsValid(SelectedSudoku.Row, SelectedSudoku.Col, number))
         {
           SelectedSudoku.IsValid = true;
-          SelectedSudoku.ForeColor = Colors.DeepSkyBlue;
+          SelectedSudoku.ForeColor = _themeService.CorrectColor;
 
           if (CheckSuccess())
           {
-            Application.Current.MainPage.DisplayAlert(
+            Application.Current!.MainPage.DisplayAlert(
               "Congratulation",
               $"You win, you're the best! You took a total of {GetOperationCount()} steps, {(DateTime.Now - _begin).TotalSeconds:n0} seconds",
               "OK"
@@ -198,7 +224,7 @@ public partial class GameViewModel : ObservableObject
         else
         {
           SelectedSudoku.IsValid = false;
-          SelectedSudoku.ForeColor = Colors.Red;
+          SelectedSudoku.ForeColor = _themeService.WrongColor;
           PlayWrongSound();
         }
         SelectedSudoku.Value = number;

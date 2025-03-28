@@ -1,6 +1,7 @@
 ﻿using CommunityToolkit.Maui;
 using Microsoft.Extensions.Logging;
 using Plugin.Maui.Audio;
+using SudokuGame.Services;
 
 namespace SudokuGame;
 
@@ -19,6 +20,7 @@ public static class MauiProgram
       });
 
     //builder.Services.AddSingleton<GamePageView>();
+    builder.Services.AddSingleton<IThemeService, ThemeService>();
     builder.AddAudio();
 
 #if DEBUG
