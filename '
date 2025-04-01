@@ -1,4 +1,4 @@
-﻿using System.Collections.ObjectModel;
+using System.Collections.ObjectModel;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -82,7 +82,7 @@ public partial class GameViewModel : ObservableObject
     SelectedDiff = Diffs.First();
     _themeService = themeService;
 
-    Application.Current!.RequestedThemeChanged += (s, e) =>
+    Application.Current.RequestedThemeChanged += (s, e) =>
     {
       switch (e.RequestedTheme)
       {
@@ -207,28 +207,28 @@ public partial class GameViewModel : ObservableObject
 
           if (CheckSuccess())
           {
-            if (Application.Current?.Windows.First().Page is Page page)
+            if (Application.Current.Windows[0] is Page page)
             {
-              page.DisplayAlert(
-                "Congratulation",
-                $"You win, you're the best! You took a total of {GetOperationCount()} steps, {(DateTime.Now - _begin).TotalSeconds:n0} seconds",
-                "OK"
-              );
+            page.DisplayAlert(
+              "Congratulation",
+              $"You win, you're the best! You took a total of {GetOperationCount()} steps, {(DateTime.Now - _begin).TotalSeconds:n0} seconds",
+              "OK"
+            );
             }
             IsSuccess = true;
-            Task.Run(async () => await PlaySuccessSound());
+            PlaySuccessSound();
             SetAllKeys();
           }
           else
           {
-            Task.Run(async () => await PlayCorrectSound());
+            PlayCorrectSound();
           }
         }
         else
         {
           SelectedSudoku.IsValid = false;
           SelectedSudoku.ForeColor = _themeService.WrongColor;
-          Task.Run(async () => await PlayWrongSound());
+          PlayWrongSound();
         }
         SelectedSudoku.Value = number;
 
@@ -241,10 +241,11 @@ public partial class GameViewModel : ObservableObject
       }
       else
       {
-        if (Application.Current?.Windows[0].Page is Page page)
-        {
-          page.DisplayAlert("Info", "Please select the cell which is needed to fill first", "OK");
-        }
+        Application.Current?.MainPage.DisplayAlert(
+          "Info",
+          "Please select the cell which is needed to fill first",
+          "OK"
+        );
       }
     }
   }

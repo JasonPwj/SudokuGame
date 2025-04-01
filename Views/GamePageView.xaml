@@ -12,196 +12,225 @@
       </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
-  <Grid Margin="20" RowDefinitions="Auto, *, Auto, Auto, Auto">
-    <Label
-      FontAttributes="Bold"
-      FontSize="Large"
-      HorizontalOptions="Center"
-      IsVisible="{Binding IsSuccess}"
-      Text="Success"
-      TextColor="Red" />
-    <Grid
-      Grid.Row="1"
-      ColumnDefinitions="*,*,*"
-      RowDefinitions="*,*,*">
-
-      <CollectionView
-        Grid.Row="0"
-        Grid.RowSpan="3"
-        Grid.Column="0"
-        Grid.ColumnSpan="3"
-        ItemsSource="{Binding Board, Mode=OneWay}"
-        SelectedItem="{Binding SelectedSudoku, Mode=TwoWay}"
-        SelectionMode="Single"
-        ZIndex="10">
-        <CollectionView.ItemsLayout>
-          <GridItemsLayout
-            HorizontalItemSpacing="0"
-            Orientation="Vertical"
-            Span="9"
-            VerticalItemSpacing="0" />
-        </CollectionView.ItemsLayout>
-        <CollectionView.ItemTemplate>
-          <DataTemplate>
-            <Border Padding="0" StrokeThickness="0">
-              <!--<Border.Behaviors>
+  <Grid
+    x:Name="sudokuPanel"
+    Margin="10,0"
+    RowDefinitions="*, *">
+    <CollectionView
+      x:Name="sudokuView"
+      ItemsSource="{Binding Board, Mode=OneWay}"
+      SelectedItem="{Binding SelectedSudoku, Mode=TwoWay}"
+      SelectionMode="Single">
+      <CollectionView.ItemsLayout>
+        <GridItemsLayout
+          HorizontalItemSpacing="0"
+          Orientation="Vertical"
+          Span="9"
+          VerticalItemSpacing="0" />
+      </CollectionView.ItemsLayout>
+      <CollectionView.ItemTemplate>
+        <DataTemplate>
+          <Border Padding="0" StrokeThickness="0">
+            <!--<Border.Behaviors>
                 <mct:AnimationBehavior EventName="Loaded">
                   <mct:AnimationBehavior.AnimationType>
                     <animations:ScaleAnimation Length="600" />
                   </mct:AnimationBehavior.AnimationType>
                 </mct:AnimationBehavior>
               </Border.Behaviors>-->
-              <Border
-                Margin="{Binding CellMargin}"
+            <Border
+              Margin="{Binding CellMargin}"
+              Padding="0"
+              BackgroundColor="{Binding BackColor}">
+              <Label
                 Padding="0"
-                BackgroundColor="{Binding BackColor}">
-                <Label
-                  Padding="0"
-                  FontAttributes="Bold"
-                  FontSize="24"
-                  HorizontalOptions="Center"
-                  Text="{Binding Text}"
-                  TextColor="{Binding ForeColor}"
-                  VerticalOptions="Center">
-                  <!--<Label.Behaviors>
+                FontAttributes="Bold"
+                FontSize="24"
+                HorizontalOptions="Center"
+                Text="{Binding Text}"
+                TextColor="{Binding ForeColor}"
+                VerticalOptions="Center">
+                <!--<Label.Behaviors>
                     <mct:AnimationBehavior EventName="Loaded">
                       <mct:AnimationBehavior.AnimationType>
                         <animations:LabelMixedAnimation Length="1000" />
                       </mct:AnimationBehavior.AnimationType>
                     </mct:AnimationBehavior>
                   </Label.Behaviors>-->
-                </Label>
-              </Border>
+              </Label>
             </Border>
-          </DataTemplate>
-        </CollectionView.ItemTemplate>
-      </CollectionView>
-    </Grid>
-    <FlexLayout
-      Grid.Row="2"
-      Direction="Column"
-      Wrap="Wrap">
-      <Button
-        Margin="0,0,2,0"
-        Padding="0,5"
-        Command="{Binding NumberInputCommand}"
-        CommandParameter="1"
-        IsEnabled="{Binding IsKeyEnabled[0].IsEnabled}"
-        Text="1" />
-      <Button
-        Margin="2,0"
-        Padding="0,5"
-        Command="{Binding NumberInputCommand}"
-        CommandParameter="2"
-        IsEnabled="{Binding IsKeyEnabled[1].IsEnabled}"
-        Text="2" />
-      <Button
-        Margin="2,0"
-        Padding="0,5"
-        Command="{Binding NumberInputCommand}"
-        CommandParameter="3"
-        IsEnabled="{Binding IsKeyEnabled[2].IsEnabled}"
-        Text="3" />
-      <Button
-        Margin="2,0"
-        Padding="0,5"
-        Command="{Binding NumberInputCommand}"
-        CommandParameter="4"
-        IsEnabled="{Binding IsKeyEnabled[3].IsEnabled}"
-        Text="4" />
-      <Button
-        Margin="2,0"
-        Padding="0,5"
-        Command="{Binding NumberInputCommand}"
-        CommandParameter="5"
-        IsEnabled="{Binding IsKeyEnabled[4].IsEnabled}"
-        Text="5" />
-      <Button
-        Margin="2,0"
-        Padding="0,5"
-        Command="{Binding NumberInputCommand}"
-        CommandParameter="6"
-        IsEnabled="{Binding IsKeyEnabled[5].IsEnabled}"
-        Text="6" />
-      <Button
-        Margin="2,0"
-        Padding="0,5"
-        Command="{Binding NumberInputCommand}"
-        CommandParameter="7"
-        IsEnabled="{Binding IsKeyEnabled[6].IsEnabled}"
-        Text="7" />
-      <Button
-        Margin="2,0"
-        Padding="0,5"
-        Command="{Binding NumberInputCommand}"
-        CommandParameter="8"
-        IsEnabled="{Binding IsKeyEnabled[7].IsEnabled}"
-        Text="8" />
-      <Button
-        Margin="2,0,0,0"
-        Padding="0,5"
-        Command="{Binding NumberInputCommand}"
-        CommandParameter="9"
-        IsEnabled="{Binding IsKeyEnabled[8].IsEnabled}"
-        Text="9" />
-    </FlexLayout>
-    <StackLayout
-      Grid.Row="3"
-      Margin="0,5"
-      Orientation="Horizontal"
-      VerticalOptions="Start">
-      <Button
-        Command="{Binding EraseCommand}"
-        FontSize="Default"
-        IsEnabled="{Binding CanErase}"
-        Text="Erase" />
-      <Button
-        Margin="5,0,0,0"
-        Command="{Binding UndoCommand}"
-        FontSize="Default"
-        IsEnabled="{Binding CanUndo}"
-        Text="Undo" />
+          </Border>
+        </DataTemplate>
+      </CollectionView.ItemTemplate>
+    </CollectionView>
+    <Grid
+      x:Name="sudokuControl"
+      Grid.Row="1"
+      RowDefinitions="Auto, Auto, Auto, Auto">
       <Label
-        Margin="5,0,0,0"
-        Text="Hint"
-        VerticalOptions="Center" />
-      <CheckBox IsChecked="{Binding IsHintEnabled}" />
-    </StackLayout>
-    <StackLayout
-      Grid.Row="4"
-      Margin="0,5"
-      Orientation="Horizontal">
-      <Picker
-        Title="Select Difficulty"
-        Grid.Row="4"
+        FontAttributes="Bold"
+        FontSize="Large"
+        HorizontalOptions="Center"
+        IsVisible="{Binding IsSuccess}"
+        Text="Success"
+        TextColor="Red" />
+      <FlexLayout
+        Grid.Row="1"
+        Direction="Column"
+        Wrap="Wrap">
+        <Button
+          Margin="0,0,2,0"
+          Padding="0,5"
+          Command="{Binding NumberInputCommand}"
+          CommandParameter="1"
+          IsEnabled="{Binding IsKeyEnabled[0].IsEnabled}"
+          Text="1" />
+        <Button
+          Margin="2,0"
+          Padding="0,5"
+          Command="{Binding NumberInputCommand}"
+          CommandParameter="2"
+          IsEnabled="{Binding IsKeyEnabled[1].IsEnabled}"
+          Text="2" />
+        <Button
+          Margin="2,0"
+          Padding="0,5"
+          Command="{Binding NumberInputCommand}"
+          CommandParameter="3"
+          IsEnabled="{Binding IsKeyEnabled[2].IsEnabled}"
+          Text="3" />
+        <Button
+          Margin="2,0"
+          Padding="0,5"
+          Command="{Binding NumberInputCommand}"
+          CommandParameter="4"
+          IsEnabled="{Binding IsKeyEnabled[3].IsEnabled}"
+          Text="4" />
+        <Button
+          Margin="2,0"
+          Padding="0,5"
+          Command="{Binding NumberInputCommand}"
+          CommandParameter="5"
+          IsEnabled="{Binding IsKeyEnabled[4].IsEnabled}"
+          Text="5" />
+        <Button
+          Margin="2,0"
+          Padding="0,5"
+          Command="{Binding NumberInputCommand}"
+          CommandParameter="6"
+          IsEnabled="{Binding IsKeyEnabled[5].IsEnabled}"
+          Text="6" />
+        <Button
+          Margin="2,0"
+          Padding="0,5"
+          Command="{Binding NumberInputCommand}"
+          CommandParameter="7"
+          IsEnabled="{Binding IsKeyEnabled[6].IsEnabled}"
+          Text="7" />
+        <Button
+          Margin="2,0"
+          Padding="0,5"
+          Command="{Binding NumberInputCommand}"
+          CommandParameter="8"
+          IsEnabled="{Binding IsKeyEnabled[7].IsEnabled}"
+          Text="8" />
+        <Button
+          Margin="2,0,0,0"
+          Padding="0,5"
+          Command="{Binding NumberInputCommand}"
+          CommandParameter="9"
+          IsEnabled="{Binding IsKeyEnabled[8].IsEnabled}"
+          Text="9" />
+      </FlexLayout>
+      <StackLayout
+        Grid.Row="2"
         Margin="0,5"
-        ItemDisplayBinding="{Binding Name}"
-        ItemsSource="{Binding Diffs}"
-        SelectedItem="{Binding SelectedDiff}" />
-      <Button
-        Margin="5,0,0,0"
-        Command="{Binding NewGameCommand}"
-        CommandParameter="0"
-        FontSize="Default"
-        Text="New Game"
-        ToolTipProperties.Text="Long press to change difficulty level">
-        <FlyoutBase.ContextFlyout>
-          <MenuFlyout>
-            <MenuFlyoutItem
-              Command="{Binding NewGameCommand}"
-              CommandParameter="1"
-              Text="New easy game" />
-            <MenuFlyoutItem
-              Command="{Binding NewGameCommand}"
-              CommandParameter="2"
-              Text="New medium game" />
-            <MenuFlyoutItem
-              Command="{Binding NewGameCommand}"
-              CommandParameter="3"
-              Text="New hard game" />
-          </MenuFlyout>
-        </FlyoutBase.ContextFlyout>
-      </Button>
-    </StackLayout>
+        Orientation="Horizontal"
+        VerticalOptions="Start">
+        <Button
+          Command="{Binding EraseCommand}"
+          FontSize="Default"
+          IsEnabled="{Binding CanErase}"
+          Text="Erase" />
+        <Button
+          Margin="5,0,0,0"
+          Command="{Binding UndoCommand}"
+          FontSize="Default"
+          IsEnabled="{Binding CanUndo}"
+          Text="Undo" />
+        <Label
+          Margin="5,0,0,0"
+          Text="Hint"
+          VerticalOptions="Center" />
+        <CheckBox IsChecked="{Binding IsHintEnabled}" />
+      </StackLayout>
+      <StackLayout
+        Grid.Row="3"
+        Margin="0,5"
+        Orientation="Horizontal">
+        <Picker
+          Title="Select Difficulty"
+          Grid.Row="4"
+          Margin="0,5"
+          ItemDisplayBinding="{Binding Name}"
+          ItemsSource="{Binding Diffs}"
+          SelectedItem="{Binding SelectedDiff}" />
+        <Button
+          Margin="5,0,0,0"
+          Command="{Binding NewGameCommand}"
+          CommandParameter="0"
+          FontSize="Default"
+          Text="New Game"
+          ToolTipProperties.Text="Long press to change difficulty level">
+          <FlyoutBase.ContextFlyout>
+            <MenuFlyout>
+              <MenuFlyoutItem
+                Command="{Binding NewGameCommand}"
+                CommandParameter="1"
+                Text="New easy game" />
+              <MenuFlyoutItem
+                Command="{Binding NewGameCommand}"
+                CommandParameter="2"
+                Text="New medium game" />
+              <MenuFlyoutItem
+                Command="{Binding NewGameCommand}"
+                CommandParameter="3"
+                Text="New hard game" />
+            </MenuFlyout>
+          </FlyoutBase.ContextFlyout>
+        </Button>
+      </StackLayout>
+    </Grid>
   </Grid>
+  <VisualStateManager.VisualStateGroups>
+    <VisualStateGroupList>
+      <VisualStateGroup>
+        <VisualState x:Name="sudokuPortrait">
+          <VisualState.StateTriggers>
+            <OrientationStateTrigger Orientation="Portrait" />
+            <OrientationStateTrigger Orientation="Unknown" />
+          </VisualState.StateTriggers>
+          <VisualState.Setters>
+            <Setter TargetName="sudokuPanel" Property="Grid.RowDefinitions" Value="3*, 2*" />
+            <Setter TargetName="sudokuPanel" Property="Grid.ColumnDefinitions" Value="*" />
+            <Setter TargetName="sudokuControl" Property="Grid.Row" Value="1" />
+            <Setter TargetName="sudokuControl" Property="Grid.Column" Value="0" />
+            <Setter TargetName="sudokuControl" Property="Grid.Margin" Value="0,5" />
+          </VisualState.Setters>
+        </VisualState>
+        <VisualState x:Name="sudokuLandscape">
+          <VisualState.StateTriggers>
+            <OrientationStateTrigger Orientation="Landscape" />
+          </VisualState.StateTriggers>
+          <VisualState.Setters>
+            <Setter TargetName="sudokuPanel" Property="Grid.RowDefinitions" Value="*" />
+            <Setter TargetName="sudokuPanel" Property="Grid.ColumnDefinitions" Value="*, *" />
+            <Setter TargetName="sudokuControl" Property="Grid.Row" Value="0" />
+            <Setter TargetName="sudokuControl" Property="Grid.Column" Value="1" />
+            <Setter TargetName="sudokuControl" Property="Grid.Margin" Value="5,0" />
+          </VisualState.Setters>
+        </VisualState>
+      </VisualStateGroup>
+    </VisualStateGroupList>
+  </VisualStateManager.VisualStateGroups>
 </ContentPage>
