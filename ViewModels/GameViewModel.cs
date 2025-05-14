@@ -53,6 +53,9 @@ public partial class GameViewModel : ObservableObject
     new KeyNumEnable { IsEnabled = false },
   };
 
+  [ObservableProperty]
+  private bool _isPlayingSound = false;
+
   private DifficultyLevel _newGameLevel = DifficultyLevel.Easy;
 
   private SudokuGenerator _sudokuGenerator;
@@ -406,6 +409,10 @@ public partial class GameViewModel : ObservableObject
   [RelayCommand]
   private async Task PlayCorrectSound()
   {
+    if (!IsPlayingSound)
+    {
+      return;
+    }
     try
     {
       var player = _audioManager.CreatePlayer(
@@ -422,6 +429,10 @@ public partial class GameViewModel : ObservableObject
   [RelayCommand]
   private async Task PlayWrongSound()
   {
+    if (!IsPlayingSound)
+    {
+      return;
+    }
     try
     {
       var player = _audioManager.CreatePlayer(
@@ -438,6 +449,10 @@ public partial class GameViewModel : ObservableObject
   [RelayCommand]
   private async Task PlaySuccessSound()
   {
+    if (!IsPlayingSound)
+    {
+      return;
+    }
     try
     {
       var player = _audioManager.CreatePlayer(

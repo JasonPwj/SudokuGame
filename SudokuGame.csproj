@@ -93,4 +93,12 @@
     </MauiXaml>
   </ItemGroup>
 
+  <ItemGroup>
+    <EditorConfigFiles Remove="E:\Codes\SudokuGame\.editorconfig" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Include="E:\Codes\SudokuGame\.editorconfig" />
+  </ItemGroup>
+
 </Project>

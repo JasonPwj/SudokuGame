@@ -163,6 +163,11 @@
           Text="Hint"
           VerticalOptions="Center" />
         <CheckBox IsChecked="{Binding IsHintEnabled}" />
+        <Label
+          Margin="5,0,0,0"
+          Text="Sound"
+          VerticalOptions="Center" />
+        <CheckBox IsChecked="{Binding IsPlayingSound}" />
       </StackLayout>
       <StackLayout
         Grid.Row="3"
