@@ -7,6 +7,7 @@
   xmlns:views="clr-namespace:SudokuGame.Views"
   Title="SudokuGame"
   Shell.FlyoutBehavior="Flyout">
+  <FlyoutItem Title="Easy" />
 
   <!--<ShellContent
         Title="Home"

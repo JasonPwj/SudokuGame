@@ -309,6 +309,27 @@ public partial class GameViewModel : ObservableObject
     _begin = DateTime.Now;
   }
 
+  [RelayCommand]
+  private void SelectGame(string hurdlestr)
+  {
+    var hurdle = Convert.ToInt32(hurdlestr);
+    try
+    {
+      var toast = Toast.Make($"Selecting game {hurdlestr}", ToastDuration.Short, 14);
+      if (toast != null)
+        toast.Show();
+    }
+    catch { }
+    var boards = _sudokuGenerator.SelectGame(hurdle);
+    Board = new ObservableCollection<SudokuCell>(boards);
+
+    IsSuccess = false;
+    ClearOperations();
+    InitNumberCounts();
+
+    _begin = DateTime.Now;
+  }
+
   private void ResetBoard()
   {
     for (int i = 0; i < Board.Count; i++)
