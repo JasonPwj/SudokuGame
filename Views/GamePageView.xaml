@@ -4,12 +4,16 @@
   xmlns="http://schemas.microsoft.com/dotnet/2021/maui"
   xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
   xmlns:animations="clr-namespace:SudokuGame.Animations"
-  xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit">
+  xmlns:buttons="clr-namespace:Syncfusion.Maui.Toolkit.Buttons;assembly=Syncfusion.Maui.Toolkit"
+  xmlns:mct="http://schemas.microsoft.com/dotnet/2022/maui/toolkit"
+  xmlns:popup="clr-namespace:Syncfusion.Maui.Toolkit.Popup;assembly=Syncfusion.Maui.Toolkit"
+  xmlns:toolkit="http://schemas.syncfusion.com/maui/toolkit">
   <ContentPage.Resources>
     <ResourceDictionary>
-      <Style TargetType="Button">
+      <Style x:Key="numberButtonStyle" TargetType="buttons:SfButton">
         <Setter Property="FontSize" Value="Large" />
-        <Setter Property="CornerRadius" Value="5" />
+        <Setter Property="Margin" Value="2,0" />
+        <Setter Property="Padding" Value="0,5" />
       </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
@@ -82,68 +86,61 @@
         Grid.Row="1"
         Direction="Column"
         Wrap="Wrap">
-        <Button
+        <buttons:SfButton
           Margin="0,0,2,0"
-          Padding="0,5"
           Command="{Binding NumberInputCommand}"
           CommandParameter="1"
           IsEnabled="{Binding IsKeyEnabled[0].IsEnabled}"
+          Style="{StaticResource numberButtonStyle}"
           Text="1" />
-        <Button
-          Margin="2,0"
-          Padding="0,5"
+        <buttons:SfButton
           Command="{Binding NumberInputCommand}"
           CommandParameter="2"
           IsEnabled="{Binding IsKeyEnabled[1].IsEnabled}"
+          Style="{StaticResource numberButtonStyle}"
           Text="2" />
-        <Button
-          Margin="2,0"
-          Padding="0,5"
+        <buttons:SfButton
           Command="{Binding NumberInputCommand}"
           CommandParameter="3"
           IsEnabled="{Binding IsKeyEnabled[2].IsEnabled}"
+          Style="{StaticResource numberButtonStyle}"
           Text="3" />
-        <Button
-          Margin="2,0"
-          Padding="0,5"
+        <buttons:SfButton
           Command="{Binding NumberInputCommand}"
           CommandParameter="4"
           IsEnabled="{Binding IsKeyEnabled[3].IsEnabled}"
+          Style="{StaticResource numberButtonStyle}"
           Text="4" />
-        <Button
-          Margin="2,0"
-          Padding="0,5"
+        <buttons:SfButton
           Command="{Binding NumberInputCommand}"
           CommandParameter="5"
           IsEnabled="{Binding IsKeyEnabled[4].IsEnabled}"
+          Style="{StaticResource numberButtonStyle}"
           Text="5" />
-        <Button
-          Margin="2,0"
-          Padding="0,5"
+        <buttons:SfButton
           Command="{Binding NumberInputCommand}"
           CommandParameter="6"
           IsEnabled="{Binding IsKeyEnabled[5].IsEnabled}"
+          Style="{StaticResource numberButtonStyle}"
           Text="6" />
-        <Button
-          Margin="2,0"
-          Padding="0,5"
+        <buttons:SfButton
           Command="{Binding NumberInputCommand}"
           CommandParameter="7"
           IsEnabled="{Binding IsKeyEnabled[6].IsEnabled}"
+          Style="{StaticResource numberButtonStyle}"
           Text="7" />
-        <Button
-          Margin="2,0"
-          Padding="0,5"
+        <buttons:SfButton
           Command="{Binding NumberInputCommand}"
           CommandParameter="8"
           IsEnabled="{Binding IsKeyEnabled[7].IsEnabled}"
+          Style="{StaticResource numberButtonStyle}"
           Text="8" />
-        <Button
+        <buttons:SfButton
           Margin="2,0,0,0"
-          Padding="0,5"
           Command="{Binding NumberInputCommand}"
           CommandParameter="9"
           IsEnabled="{Binding IsKeyEnabled[8].IsEnabled}"
+          Style="{StaticResource numberButtonStyle}"
           Text="9" />
       </FlexLayout>
       <StackLayout
@@ -151,12 +148,12 @@
         Margin="0,5"
         Orientation="Horizontal"
         VerticalOptions="Start">
-        <Button
+        <buttons:SfButton
           Command="{Binding EraseCommand}"
           FontSize="Default"
           IsEnabled="{Binding CanErase}"
           Text="Erase" />
-        <Button
+        <buttons:SfButton
           Margin="5,0,0,0"
           Command="{Binding UndoCommand}"
           FontSize="Default"
@@ -177,14 +174,14 @@
         Grid.Row="3"
         Margin="0,5"
         Orientation="Horizontal">
-        <Picker
+        <!--<Picker
           Title="Select Difficulty"
           Grid.Row="4"
           Margin="0,5"
           ItemDisplayBinding="{Binding Name}"
           ItemsSource="{Binding Diffs}"
           SelectedItem="{Binding SelectedDiff}" />
-        <Button
+        <buttons:SfButton
           Margin="5,0,0,0"
           Command="{Binding NewGameCommand}"
           CommandParameter="0"
@@ -207,10 +204,84 @@
                 Text="New hard game" />
             </MenuFlyout>
           </FlyoutBase.ContextFlyout>
-        </Button>
+        </buttons:SfButton>-->
       </StackLayout>
       <StackLayout Grid.Row="4">
-        <Label
+        <buttons:SfButton Command="{Binding OpenSelectGameBottomSheetCommand}" Text="New game" />
+        <popup:SfPopup
+          AppearanceMode="TwoButton"
+          IsFullScreen="True"
+          IsOpen="{Binding IsSelectGameBottomSheetOpen}"
+          ShowCloseButton="True"
+          ShowFooter="False">
+          <popup:SfPopup.ContentTemplate>
+            <DataTemplate>
+              <VerticalStackLayout HorizontalOptions="Center">
+                <Label Text="Random game" />
+                <HorizontalStackLayout Margin="0,5,0,0">
+                  <buttons:SfButton
+                    Command="{Binding NewGameCommand}"
+                    CommandParameter="1"
+                    Text="Easy" />
+                  <buttons:SfButton
+                    Command="{Binding NewGameCommand}"
+                    CommandParameter="2"
+                    Text="Medium" />
+                  <buttons:SfButton
+                    Command="{Binding NewGameCommand}"
+                    CommandParameter="3"
+                    Text="Hard" />
+                </HorizontalStackLayout>
+                <Label Text="Easy" />
+                <HorizontalStackLayout>
+                  <buttons:SfButton
+                    Command="{Binding SelectGameCommand}"
+                    CommandParameter="1"
+                    Text="1" />
+                  <buttons:SfButton
+                    Command="{Binding SelectGameCommand}"
+                    CommandParameter="2"
+                    Text="2" />
+                  <buttons:SfButton
+                    Command="{Binding SelectGameCommand}"
+                    CommandParameter="3"
+                    Text="3" />
+                  <buttons:SfButton
+                    Command="{Binding SelectGameCommand}"
+                    CommandParameter="4"
+                    Text="4" />
+                  <buttons:SfButton
+                    Command="{Binding SelectGameCommand}"
+                    CommandParameter="5"
+                    Text="5" />
+                  <buttons:SfButton
+                    Command="{Binding SelectGameCommand}"
+                    CommandParameter="6"
+                    Text="6" />
+                  <buttons:SfButton
+                    Command="{Binding SelectGameCommand}"
+                    CommandParameter="7"
+                    Text="7" />
+                  <buttons:SfButton
+                    Command="{Binding SelectGameCommand}"
+                    CommandParameter="8"
+                    Text="8" />
+                  <buttons:SfButton
+                    Command="{Binding SelectGameCommand}"
+                    CommandParameter="9"
+                    Text="9" />
+                  <buttons:SfButton
+                    Command="{Binding SelectGameCommand}"
+                    CommandParameter="10"
+                    Text="10" />
+                </HorizontalStackLayout>
+                <Label Text="Medium" />
+                <Label Text="Hard" />
+              </VerticalStackLayout>
+            </DataTemplate>
+          </popup:SfPopup.ContentTemplate>
+        </popup:SfPopup>
+        <!--<Label
           Margin="5,0,0,0"
           FontSize="Default"
           Text="Right-click or long press to select a game">
@@ -584,7 +655,7 @@
               </MenuFlyoutSubItem>
             </MenuFlyout>
           </FlyoutBase.ContextFlyout>
-        </Label>
+        </Label>-->
       </StackLayout>
     </Grid>
   </Grid>

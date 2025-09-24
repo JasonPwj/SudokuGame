@@ -1,4 +1,5 @@
 ﻿using System.Collections.ObjectModel;
+using System.Diagnostics;
 using CommunityToolkit.Maui.Alerts;
 using CommunityToolkit.Maui.Core;
 using CommunityToolkit.Mvvm.ComponentModel;
@@ -38,6 +39,9 @@ public partial class GameViewModel : ObservableObject
 
   [ObservableProperty]
   private bool _isHintEnabled = false;
+
+  [ObservableProperty]
+  private bool _isSelectGameBottomSheetOpen = false;
 
   [ObservableProperty]
   private ObservableCollection<KeyNumEnable> _isKeyEnabled = new ObservableCollection<KeyNumEnable>
@@ -119,7 +123,7 @@ public partial class GameViewModel : ObservableObject
   partial void OnSelectedDiffChanged(DiffItem value)
   {
     _newGameLevel = value?.Diff ?? DifficultyLevel.Easy;
-    Application.Current?.Dispatcher.Dispatch(async () => await NewGame());
+    NewGameCommand.Execute(null);
   }
 
   partial void OnSelectedSudokuChanged(SudokuCell? value)
@@ -219,19 +223,37 @@ public partial class GameViewModel : ObservableObject
               );
             }
             IsSuccess = true;
-            Task.Run(async () => await PlaySuccessSound());
+            if (IsPlayingSound)
+            {
+              if (PlaySuccessSoundCommand.CanExecute(null))
+              {
+                PlaySuccessSoundCommand.Execute(null);
+              }
+            }
             SetAllKeys();
           }
           else
           {
-            Task.Run(async () => await PlayCorrectSound());
+            if (IsPlayingSound)
+            {
+              if (PlayCorrectSoundCommand.CanExecute(null))
+              {
+                PlayCorrectSoundCommand.Execute(null);
+              }
+            }
           }
         }
         else
         {
           SelectedSudoku.IsValid = false;
           SelectedSudoku.ForeColor = _themeService.WrongColor;
-          Task.Run(async () => await PlayWrongSound());
+          if (IsPlayingSound)
+          {
+            if (PlayWrongSoundCommand.CanExecute(null))
+            {
+              PlayWrongSoundCommand.Execute(null);
+            }
+          }
         }
         SelectedSudoku.Value = number;
 
@@ -271,6 +293,7 @@ public partial class GameViewModel : ObservableObject
   [RelayCommand]
   private async Task NewGame(string diff = "0")
   {
+    IsSelectGameBottomSheetOpen = false;
     SelectedSudoku = null;
     ResetBoard();
 
@@ -310,8 +333,16 @@ public partial class GameViewModel : ObservableObject
   }
 
   [RelayCommand]
+  private void OpenSelectGameBottomSheet()
+  {
+    Debug.WriteLine("Set BottomSheet IsOpen true");
+    IsSelectGameBottomSheetOpen = true;
+  }
+
+  [RelayCommand]
   private void SelectGame(string hurdlestr)
   {
+    IsSelectGameBottomSheetOpen = false;
     var hurdle = Convert.ToInt32(hurdlestr);
     try
     {
@@ -428,32 +459,23 @@ public partial class GameViewModel : ObservableObject
   }
 
   [RelayCommand]
-  private async Task PlayCorrectSound()
+  private async Task PlayCorrectSoundAsync()
   {
-    if (!IsPlayingSound)
+    //try
     {
-      return;
-    }
-    try
-    {
-      var player = _audioManager.CreatePlayer(
-        await FileSystem.OpenAppPackageFileAsync("correct.mp3")
-      );
+      var stream = await FileSystem.OpenAppPackageFileAsync("correct.mp3");
+      var player = _audioManager.CreatePlayer(stream);
       if (player != null)
       {
         player.Play();
       }
     }
-    catch { }
+    //catch { }
   }
 
   [RelayCommand]
-  private async Task PlayWrongSound()
+  private async Task PlayWrongSoundAsync()
   {
-    if (!IsPlayingSound)
-    {
-      return;
-    }
     try
     {
       var player = _audioManager.CreatePlayer(
@@ -468,12 +490,8 @@ public partial class GameViewModel : ObservableObject
   }
 
   [RelayCommand]
-  private async Task PlaySuccessSound()
+  private async Task PlaySuccessSoundAsync()
   {
-    if (!IsPlayingSound)
-    {
-      return;
-    }
     try
     {
       var player = _audioManager.CreatePlayer(

@@ -6,13 +6,12 @@
   xmlns:local="clr-namespace:SudokuGame"
   xmlns:views="clr-namespace:SudokuGame.Views"
   Title="SudokuGame"
-  Shell.FlyoutBehavior="Flyout">
-  <FlyoutItem Title="Easy" />
+  Shell.FlyoutBehavior="Disabled">
 
   <!--<ShellContent
-        Title="Home"
-        ContentTemplate="{DataTemplate local:MainPage}"
-        Route="MainPage" />-->
+    Title="Home"
+    ContentTemplate="{DataTemplate local:MainPage}"
+    Route="MainPage" />-->
   <ShellContent
     Title="Sudoku Game"
     ContentTemplate="{DataTemplate views:GamePageView}"

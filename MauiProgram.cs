@@ -2,6 +2,7 @@
 using Microsoft.Extensions.Logging;
 using Plugin.Maui.Audio;
 using SudokuGame.Services;
+using Syncfusion.Maui.Toolkit.Hosting;
 
 namespace SudokuGame;
 
@@ -11,6 +12,7 @@ public static class MauiProgram
   {
     var builder = MauiApp.CreateBuilder();
     builder
+      .ConfigureSyncfusionToolkit()
       .UseMauiApp<App>()
       .UseMauiCommunityToolkit()
       .ConfigureFonts(fonts =>
