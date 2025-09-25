@@ -15,6 +15,9 @@
         <Setter Property="Margin" Value="2,0" />
         <Setter Property="Padding" Value="0,5" />
       </Style>
+      <Style x:Key="levelButtonStyle" TargetType="buttons:SfButton">
+        <Setter Property="Padding" Value="0" />
+      </Style>
     </ResourceDictionary>
   </ContentPage.Resources>
   <Grid
@@ -210,452 +213,506 @@
         <buttons:SfButton Command="{Binding OpenSelectGameBottomSheetCommand}" Text="New game" />
         <popup:SfPopup
           AppearanceMode="TwoButton"
-          IsFullScreen="True"
+          AutoSizeMode="Both"
+          HeaderTitle="New Game"
           IsOpen="{Binding IsSelectGameBottomSheetOpen}"
           ShowCloseButton="True"
           ShowFooter="False">
           <popup:SfPopup.ContentTemplate>
             <DataTemplate>
-              <VerticalStackLayout HorizontalOptions="Center">
-                <Label Text="Random game" />
-                <HorizontalStackLayout Margin="0,5,0,0">
-                  <buttons:SfButton
-                    Command="{Binding NewGameCommand}"
-                    CommandParameter="1"
-                    Text="Easy" />
-                  <buttons:SfButton
-                    Command="{Binding NewGameCommand}"
-                    CommandParameter="2"
-                    Text="Medium" />
-                  <buttons:SfButton
-                    Command="{Binding NewGameCommand}"
-                    CommandParameter="3"
-                    Text="Hard" />
-                </HorizontalStackLayout>
-                <Label Text="Easy" />
-                <HorizontalStackLayout>
-                  <buttons:SfButton
-                    Command="{Binding SelectGameCommand}"
-                    CommandParameter="1"
-                    Text="1" />
-                  <buttons:SfButton
-                    Command="{Binding SelectGameCommand}"
-                    CommandParameter="2"
-                    Text="2" />
-                  <buttons:SfButton
-                    Command="{Binding SelectGameCommand}"
-                    CommandParameter="3"
-                    Text="3" />
-                  <buttons:SfButton
-                    Command="{Binding SelectGameCommand}"
-                    CommandParameter="4"
-                    Text="4" />
-                  <buttons:SfButton
-                    Command="{Binding SelectGameCommand}"
-                    CommandParameter="5"
-                    Text="5" />
-                  <buttons:SfButton
-                    Command="{Binding SelectGameCommand}"
-                    CommandParameter="6"
-                    Text="6" />
-                  <buttons:SfButton
-                    Command="{Binding SelectGameCommand}"
-                    CommandParameter="7"
-                    Text="7" />
-                  <buttons:SfButton
-                    Command="{Binding SelectGameCommand}"
-                    CommandParameter="8"
-                    Text="8" />
-                  <buttons:SfButton
-                    Command="{Binding SelectGameCommand}"
-                    CommandParameter="9"
-                    Text="9" />
-                  <buttons:SfButton
-                    Command="{Binding SelectGameCommand}"
-                    CommandParameter="10"
-                    Text="10" />
-                </HorizontalStackLayout>
-                <Label Text="Medium" />
-                <Label Text="Hard" />
-              </VerticalStackLayout>
+              <ScrollView Margin="20">
+                <VerticalStackLayout HorizontalOptions="Center">
+                  <Label Margin="0,10" Text="Random game" />
+                  <HorizontalStackLayout Margin="0,5,0,0">
+                    <buttons:SfButton
+                      Command="{Binding NewGameCommand}"
+                      CommandParameter="1"
+                      Text="Easy" />
+                    <buttons:SfButton
+                      Command="{Binding NewGameCommand}"
+                      CommandParameter="2"
+                      Text="Medium" />
+                    <buttons:SfButton
+                      Command="{Binding NewGameCommand}"
+                      CommandParameter="3"
+                      Text="Hard" />
+                  </HorizontalStackLayout>
+                  <Label Margin="0,10" Text="Easy" />
+                  <HorizontalStackLayout>
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="1"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="1" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="2"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="2" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="3"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="3" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="4"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="4" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="5"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="5" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="6"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="6" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="7"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="7" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="8"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="8" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="9"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="9" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="10"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="10" />
+                  </HorizontalStackLayout>
+                  <HorizontalStackLayout>
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="11"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="11" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="12"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="12" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="13"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="13" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="14"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="14" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="15"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="15" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="16"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="16" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="17"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="17" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="18"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="18" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="19"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="19" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="20"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="20" />
+                  </HorizontalStackLayout>
+                  <HorizontalStackLayout>
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="21"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="21" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="22"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="22" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="23"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="23" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="24"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="24" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="25"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="25" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="26"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="26" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="27"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="27" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="28"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="28" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="29"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="29" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="30"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="30" />
+                  </HorizontalStackLayout>
+                  <Label Margin="0,10" Text="Medium" />
+                  <HorizontalStackLayout>
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="31"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="31" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="32"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="32" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="33"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="33" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="34"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="34" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="35"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="35" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="36"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="36" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="37"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="37" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="38"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="38" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="39"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="39" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="40"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="40" />
+                  </HorizontalStackLayout>
+                  <HorizontalStackLayout>
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="41"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="41" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="42"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="42" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="43"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="43" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="44"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="44" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="45"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="45" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="46"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="46" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="47"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="47" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="48"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="48" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="49"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="49" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="50"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="50" />
+                  </HorizontalStackLayout>
+                  <HorizontalStackLayout>
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="51"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="51" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="52"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="52" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="53"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="53" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="54"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="54" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="55"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="55" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="56"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="56" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="57"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="57" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="58"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="58" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="59"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="59" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="60"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="60" />
+                  </HorizontalStackLayout>
+                  <Label Margin="0,10" Text="Hard" />
+                  <HorizontalStackLayout>
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="61"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="61" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="62"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="62" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="63"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="63" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="64"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="64" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="65"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="65" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="66"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="66" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="67"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="67" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="68"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="68" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="69"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="69" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="70"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="70" />
+                  </HorizontalStackLayout>
+                  <HorizontalStackLayout>
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="71"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="71" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="72"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="72" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="73"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="73" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="74"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="74" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="75"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="75" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="76"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="76" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="77"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="77" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="78"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="78" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="79"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="79" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="80"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="80" />
+                  </HorizontalStackLayout>
+                  <HorizontalStackLayout>
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="81"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="81" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="82"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="82" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="83"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="83" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="84"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="84" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="85"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="85" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="86"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="86" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="87"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="87" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="88"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="88" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="89"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="89" />
+                    <buttons:SfButton
+                      Command="{Binding SelectGameCommand}"
+                      CommandParameter="90"
+                      Style="{StaticResource levelButtonStyle}"
+                      Text="90" />
+                  </HorizontalStackLayout>
+                </VerticalStackLayout>
+              </ScrollView>
             </DataTemplate>
           </popup:SfPopup.ContentTemplate>
         </popup:SfPopup>
-        <!--<Label
-          Margin="5,0,0,0"
-          FontSize="Default"
-          Text="Right-click or long press to select a game">
-          <FlyoutBase.ContextFlyout>
-            <MenuFlyout>
-              <MenuFlyoutSubItem Text="Easy">
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="1"
-                  Text="1" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="2"
-                  Text="2" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="3"
-                  Text="3" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="4"
-                  Text="4" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="5"
-                  Text="5" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="6"
-                  Text="6" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="7"
-                  Text="7" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="8"
-                  Text="8" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="9"
-                  Text="9" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="10"
-                  Text="10" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="11"
-                  Text="11" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="12"
-                  Text="12" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="13"
-                  Text="13" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="14"
-                  Text="14" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="15"
-                  Text="15" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="16"
-                  Text="16" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="17"
-                  Text="17" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="18"
-                  Text="18" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="19"
-                  Text="19" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="20"
-                  Text="20" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="21"
-                  Text="21" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="22"
-                  Text="22" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="23"
-                  Text="23" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="24"
-                  Text="24" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="25"
-                  Text="25" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="26"
-                  Text="26" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="27"
-                  Text="27" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="28"
-                  Text="28" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="29"
-                  Text="29" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="30"
-                  Text="30" />
-              </MenuFlyoutSubItem>
-              <MenuFlyoutSubItem Text="Medium">
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="31"
-                  Text="31" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="32"
-                  Text="32" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="33"
-                  Text="33" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="34"
-                  Text="34" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="35"
-                  Text="35" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="36"
-                  Text="36" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="37"
-                  Text="37" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="38"
-                  Text="38" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="39"
-                  Text="39" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="40"
-                  Text="40" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="41"
-                  Text="41" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="42"
-                  Text="42" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="43"
-                  Text="43" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="44"
-                  Text="44" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="45"
-                  Text="45" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="46"
-                  Text="46" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="47"
-                  Text="47" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="48"
-                  Text="48" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="49"
-                  Text="49" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="50"
-                  Text="50" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="51"
-                  Text="51" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="52"
-                  Text="52" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="53"
-                  Text="53" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="54"
-                  Text="54" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="55"
-                  Text="55" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="56"
-                  Text="56" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="57"
-                  Text="57" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="58"
-                  Text="58" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="59"
-                  Text="59" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="60"
-                  Text="60" />
-              </MenuFlyoutSubItem>
-              <MenuFlyoutSubItem Text="Hard">
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="61"
-                  Text="61" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="62"
-                  Text="62" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="63"
-                  Text="63" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="64"
-                  Text="64" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="65"
-                  Text="65" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="66"
-                  Text="66" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="67"
-                  Text="67" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="68"
-                  Text="68" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="69"
-                  Text="69" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="70"
-                  Text="70" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="71"
-                  Text="71" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="72"
-                  Text="72" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="73"
-                  Text="73" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="74"
-                  Text="74" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="75"
-                  Text="75" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="76"
-                  Text="76" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="77"
-                  Text="77" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="78"
-                  Text="78" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="79"
-                  Text="79" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="80"
-                  Text="80" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="81"
-                  Text="81" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="82"
-                  Text="82" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="83"
-                  Text="83" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="84"
-                  Text="84" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="85"
-                  Text="85" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="86"
-                  Text="86" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="87"
-                  Text="87" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="88"
-                  Text="88" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="89"
-                  Text="89" />
-                <MenuFlyoutItem
-                  Command="{Binding SelectGameCommand}"
-                  CommandParameter="90"
-                  Text="90" />
-              </MenuFlyoutSubItem>
-            </MenuFlyout>
-          </FlyoutBase.ContextFlyout>
-        </Label>-->
       </StackLayout>
     </Grid>
   </Grid>
