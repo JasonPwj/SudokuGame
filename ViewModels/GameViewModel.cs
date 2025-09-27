@@ -41,7 +41,7 @@ public partial class GameViewModel : ObservableObject
   private bool _isHintEnabled = false;
 
   [ObservableProperty]
-  private bool _isSelectGameBottomSheetOpen = false;
+  private bool _isSelectGamePopupOpen = false;
 
   [ObservableProperty]
   private ObservableCollection<KeyNumEnable> _isKeyEnabled = new ObservableCollection<KeyNumEnable>
@@ -293,7 +293,7 @@ public partial class GameViewModel : ObservableObject
   [RelayCommand]
   private async Task NewGame(string diff = "0")
   {
-    IsSelectGameBottomSheetOpen = false;
+    IsSelectGamePopupOpen = false;
     SelectedSudoku = null;
     ResetBoard();
 
@@ -333,16 +333,15 @@ public partial class GameViewModel : ObservableObject
   }
 
   [RelayCommand]
-  private void OpenSelectGameBottomSheet()
+  private void OpenSelectGamePopup()
   {
-    Debug.WriteLine("Set BottomSheet IsOpen true");
-    IsSelectGameBottomSheetOpen = true;
+    IsSelectGamePopupOpen = true;
   }
 
   [RelayCommand]
   private void SelectGame(string hurdlestr)
   {
-    IsSelectGameBottomSheetOpen = false;
+    IsSelectGamePopupOpen = false;
     var hurdle = Convert.ToInt32(hurdlestr);
     try
     {

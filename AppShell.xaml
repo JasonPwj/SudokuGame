@@ -6,7 +6,8 @@
   xmlns:local="clr-namespace:SudokuGame"
   xmlns:views="clr-namespace:SudokuGame.Views"
   Title="SudokuGame"
-  Shell.FlyoutBehavior="Disabled">
+  Shell.FlyoutBehavior="Disabled"
+  Shell.NavBarIsVisible="False">
 
   <!--<ShellContent
     Title="Home"
